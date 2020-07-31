@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+    {% block content %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+            <h1>Welcome to Universal Tech Academy.</h1>
+            
+            
+            {% if session.get('username') %}
+            <h3>Let's get started.</h3>
+            {% else %}
+                <p>Already registered? <a href="{{url_for('login')}}">Login</a></p>  
+            {% endif %}    
+
+            <br><i><q>A university is just a group of buildings gathered around a library.</q></i><br>
+                <b>- Shelby Foote</b><br><br>
+            <q><i>Study without desire spoils the memory, and it retains nothing that it takes in.</q></i><br>
+                <b>- Leonardo da Vinci</b></q>   
+
+         </div>
+    </div>
+    {% endblock %}
