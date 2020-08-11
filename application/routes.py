@@ -75,7 +75,9 @@ def register():
         user = User(user_id=user_id,email=email,first_name=first_name,last_name=last_name)
         user.set_password(password)
         user.save()
-        flash("You have successfully registered","success")
+        session['user_id']= user.user_id
+        session['username']= user.first_name
+        flash(f"{ session['username'] },You have successfully registered","success")
         return redirect(url_for('index'))
         
     return render_template("register.html",title = "Register",form=form,register = True)
@@ -115,7 +117,7 @@ def enrollment():
             Enrollment(user_id=user_id, courseID = courseID).save()
             flash(f"You are successfully enrolled in the course {courseTitle}","success")
 
-    classes = course_list()
+    classes = course_list(user_id)
     # term = request.form.get("term")
     # d = {"id":courseID,"title":courseTitle,"term":term}
     

@@ -1,6 +1,6 @@
 from application.models import User
 
-def course_list():
+def course_list(user_ida):
     classes = list(User.objects.aggregate(*[
                     {
                         '$lookup': {
@@ -29,7 +29,7 @@ def course_list():
                         }
                     }, {
                         '$match': {
-                            'user_id': user_id
+                            'user_id': user_ida
                         }
                     }, {
                         '$sort': {
